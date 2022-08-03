@@ -1,5 +1,9 @@
 Java has provided many server side side technology:
 
 --> CGI
---> Servlet (.java file) --> Inside java HTML is embedded
---> JSP (.jsp file) --> Inside HTML java is embedded
+--> Servlet (.java file) --> Inside java HTML is embedded   
+--> JSP (.jsp file) --> Inside HTML java is embedded         
+
+
+
+Latest MVC ---> Model View Controler. View --> JSP , Controler --> Servlet
