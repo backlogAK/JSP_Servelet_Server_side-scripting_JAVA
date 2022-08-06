@@ -17,7 +17,14 @@
 		// 2. Redirect (Redirect)
 		
 		RequestDispatcher rd = req.getRequestDispatcher("sq");
-		rd.forward(req, res);
-		
-		
+		rd.forward(req, res);	
 	}
+	
+=================================================== Theoretical ===============================================
+
+--> Request Disaptcher (Rd) --> Rd is used to connect two Servlet Ex: When from client side a request is made then if we have two servlets, one is website and other is 
+                                                                          payment gateway then this Rd is used.
+									  
+					--> But when we want to redirect to payment gateway then Sendredirect() method is used. In this the page will say you are being 
+					     redirected.
+					--> In redirect two different request object is used.
