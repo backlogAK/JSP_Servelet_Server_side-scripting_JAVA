@@ -1,0 +1,80 @@
+--> Create a java class for servlet in your com.servlet that is also made earlier
+
+--> ===================================== ADD SERVLET CLASS ==============================================
+
+package com.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class AddServlet extends HttpServlet 
+{
+
+	public void doGet(HttpServletRequest req , HttpServletResponse res) throws IOException, ServletException 
+	{
+		int i = Integer.parseInt(req.getParameter("num1"));
+		int j = Integer.parseInt(req.getParameter("num2"));
+		
+		int k = i + j;
+		
+		// Session Management --> concept used to print the added value in this case. Data is shared from one Servlet to another
+		
+		req.setAttribute("k", k);
+		
+		PrintWriter out = res.getWriter();
+		out.println("Result is: " +k); 
+		
+		// To call servlet we have two methods:
+		// 1. Request Dispatcher (Req Dis)
+		// 2. Redirect (Redirect)
+		
+		RequestDispatcher rd = req.getRequestDispatcher("sq");
+		rd.forward(req, res);
+			
+	}
+
+}
+
+=========================================== MAPPING AND SERVLET METHOD IN XML ==================================================
+--> To open xml file drop down >src>main>java>webapp>META-INF
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  
+  <servlet>
+  
+  	<servlet-name>abc</servlet-name>
+  	<servlet-class>com.servlet.AddServlet</servlet-class>
+  	
+  </servlet>
+  
+  <servlet-mapping>
+  
+  <servlet-name>abc</servlet-name>
+  <url-pattern>/add</url-pattern>
+  
+  </servlet-mapping>
+  
+  <servlet>
+  
+  	<servlet-name>pqr</servlet-name>
+  	<servlet-class>com.servlet.SquareServlet</servlet-class>
+  	
+  </servlet>
+  
+  <servlet-mapping>
+  
+  <servlet-name>pqr</servlet-name>
+  <url-pattern>/sq</url-pattern>
+  
+  </servlet-mapping>
+  
+</web-app>
