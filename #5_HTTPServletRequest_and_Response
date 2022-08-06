@@ -1,0 +1,23 @@
+--> public void doGet(HttpServletRequest req , HttpServletResponse res) throws IOException, ServletException 
+	{
+		int i = Integer.parseInt(req.getParameter("num1"));
+		int j = Integer.parseInt(req.getParameter("num2"));
+		
+		int k = i + j;
+		
+		// Session Management --> concept used to print the added value in this case. Data is shared from one Servlet to another
+		
+		req.setAttribute("k", k);
+		
+		PrintWriter out = res.getWriter();
+		out.println("Result is: " +k); 
+		
+		// To call servlet we have two methods:
+		// 1. Request Dispatcher (Req Dis)
+		// 2. Redirect (Redirect)
+		
+		RequestDispatcher rd = req.getRequestDispatcher("sq");
+		rd.forward(req, res);
+		
+		
+	}
